@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', (): void => {
     yearElement.textContent = new Date().getFullYear().toString();
   }
 
-  // Split logo text into individual letters
-  const logo = document.querySelector('.logo');
-  if (logo) {
-    const text = logo.textContent || '';
-    logo.innerHTML = text
+  // Split the heading into individual letters for animation
+  const siteTitle = document.querySelector('.site-title');
+  if (siteTitle) {
+    const text = siteTitle.textContent || '';
+    siteTitle.innerHTML = text
       .split('')
       .map((char) => `<span class="letter">${char}</span>`)
       .join('');

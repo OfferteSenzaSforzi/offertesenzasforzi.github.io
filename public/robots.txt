@@ -1,0 +1,17 @@
+# Robots.txt for OfferteSenzaSforzi
+# https://offertesenzasforzi.github.io/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://offertesenzasforzi.github.io/sitemap.xml
+
+# Crawl-delay (optional - respected by some bots)
+Crawl-delay: 1
+
+# Block common bot paths that don't apply
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /node_modules/

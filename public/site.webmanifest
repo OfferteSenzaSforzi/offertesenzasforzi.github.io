@@ -1,11 +1,11 @@
 {
-    "name": "",
-    "short_name": "OfferteSenzaSforzi",
-    "description": "OfferteSenzaSforzi is coming soon. An innovative experience that will transform the way you interact with the world around you.",
+    "name": "OSS - Offerte Senza Sforzi",
+    "short_name": "OSS",
+    "description": "Sito ufficiale di assistenza per l'app OSS.",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#fbfbfd",
     "theme_color": "#fbfbfd",
     "orientation": "portrait-primary",
-    "lang": "en-US"
+    "lang": "it-IT"
 }

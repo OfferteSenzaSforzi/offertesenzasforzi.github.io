@@ -113,6 +113,21 @@ a:hover {
 }
 
 /* ===========================
+   Footer
+   =========================== */
+footer {
+    padding: 24px 20px 40px;
+    text-align: center;
+}
+
+footer p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+/* ===========================
    Responsive Design
    =========================== */
 @media (max-width: 768px) {

@@ -3,20 +3,22 @@ import { gsap } from 'gsap';
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', (): void => {
   // Set current year in footer
-  const yearElement = document.getElementById('year');
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear().toString();
-  }
+  const currentYear = new Date().getFullYear().toString();
+  document
+    .querySelectorAll<HTMLElement>('#year, [data-current-year]')
+    .forEach((element) => {
+      element.textContent = currentYear;
+    });
 
   // Split the heading into individual letters for animation
   const siteTitle = document.querySelector('.site-title');
-  if (siteTitle) {
-    const text = siteTitle.textContent || '';
-    siteTitle.innerHTML = text
-      .split('')
-      .map((char) => `<span class="letter">${char}</span>`)
-      .join('');
-  }
+  if (!siteTitle) return;
+
+  const text = siteTitle.textContent || '';
+  siteTitle.innerHTML = text
+    .split('')
+    .map((char) => `<span class="letter">${char}</span>`)
+    .join('');
 
   // Get all letters
   const letters = document.querySelectorAll('.letter');

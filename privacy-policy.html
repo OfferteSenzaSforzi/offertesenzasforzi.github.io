@@ -14,7 +14,7 @@
     <header>
         <h1>Privacy Policy</h1>
         <p class="effective-date">
-            <time datetime="2026-06-13">Effective date: June 13, 2026</time>
+            <time datetime="2026-07-19">Effective date: July 19, 2026</time>
         </p>
     </header>
 
@@ -22,8 +22,10 @@
         <section>
             <h2>1. About the App</h2>
             <p>
-                OfferteSenzaSforzi displays product offers and links to Amazon. No account or login is
-                required. An internet connection is necessary to retrieve current offers.
+                OfferteSenzaSforzi displays Amazon product offers and provides saved items, price
+                tracking, Wishlist AI, Smart Care, push notifications, and optional in-app plans.
+                No account or login is required. The app uses an anonymous UUID to keep service
+                limits, subscriptions, and notifications connected to the same installation.
             </p>
         </section>
 
@@ -31,28 +33,42 @@
             <h2>2. Data We Process</h2>
             <p>
                 We do not ask for your name, password, payment details, contacts, photos, or location.
-                When you use the app, our server and technical providers necessarily process basic
-                network information, such as your IP address, request time, requested resource, and
-                technical error logs.
+                The app may process an anonymous UUID, subscription plan, Wishlist AI usage, Smart Care
+                usage, and the descriptions you submit to Wishlist AI or Smart Care.
             </p>
             <p>
-                The app stores tutorial completion and favorite product identifiers locally on your
-                device. These preferences are not uploaded to our server.
+                If you enable notifications, price tracking, or Smart Care monitoring, our server may
+                store the Firebase Cloud Messaging token, selected notification categories, tracked
+                products, target price ranges, monitored objects, maintenance dates, and replacement
+                dates needed to provide those features.
+            </p>
+            <p>
+                Tutorial completion, favorite product identifiers, discarded product identifiers, and
+                local Wishlist search chronology are stored on your device. Our server and technical
+                providers also process basic network information, such as IP address, request time,
+                requested resource, and technical error logs.
             </p>
         </section>
 
         <section>
             <h2>3. How We Use and Share Data</h2>
             <p>
-                We use network information only to display offers, deliver product images, maintain
-                security, and resolve technical problems. The legal bases are providing the service
-                you request and our legitimate interest in operating and protecting it.
+                We use data to display offers, run AI requests, enforce plan and quota limits, deliver
+                notifications, maintain security, support users, and resolve technical problems. Our
+                admin tools may show anonymous UUIDs, plans, quotas, notification devices, and usage
+                summaries for support and service operations.
             </p>
             <p>
-                Data may be processed by our hosting providers and by Amazon when its product images
-                or links are requested. The app does not include advertising, analytics, tracking,
-                Firebase, or push-notification services. We do not sell personal data or use it for
-                targeted advertising.
+                Data may be processed by our hosting providers, Amazon when product images or links
+                are requested, Firebase Cloud Messaging for push notifications, RevenueCat and the
+                app store provider for purchases, and AI providers used to generate Wishlist AI and
+                Smart Care responses. We do not sell personal data or use it for targeted advertising
+                or third-party analytics.
+            </p>
+            <p>
+                The legal bases are providing the service you request, managing subscriptions or
+                notifications you enable, complying with legal obligations, and our legitimate
+                interest in operating and protecting the service.
             </p>
         </section>
 
@@ -72,17 +88,31 @@
         </section>
 
         <section>
-            <h2>5. Local Storage and Retention</h2>
+            <h2>5. Plans and Future Collaborations</h2>
             <p>
-                Tutorial and favorite preferences remain on your device until you remove them or
-                uninstall the app. Technical logs and support messages are retained only as long as
-                needed for security, support, or legal obligations. The app does not create an
-                account, so there is no remote account to delete.
+                Smart and Pro plans are purchased through the app store and synchronized with the
+                anonymous UUID so the server can apply the correct limits. We do not receive your
+                full payment card details from the app store or RevenueCat.
+            </p>
+            <p>
+                We are open to future collaborations with companies and partners. If a collaboration
+                changes how data is processed or shared, we will update this policy and, where
+                required, ask for consent before introducing that processing.
+            </p>
+        </section>
+
+        <section>
+            <h2>6. Local Storage and Retention</h2>
+            <p>
+                Local preferences remain on your device until you remove them or uninstall the app.
+                Server-side tracking, notification, Smart Care, subscription, and quota data is kept
+                only as long as needed to provide the feature, operate the service, support users, or
+                meet legal obligations. The app does not create a login account.
             </p>
         </section>
 
         <section class="contact-section">
-            <h2>6. Your Rights and Contact</h2>
+            <h2>7. Your Rights and Contact</h2>
             <p>
                 Under applicable data-protection law, you may request access, correction, deletion,
                 restriction, or portability of your data, object to processing, or withdraw consent.
@@ -94,5 +124,11 @@
             </p>
         </section>
     </main>
+
+    <footer>
+        <p>&copy; <span data-current-year></span> OfferteSenzaSforzi. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

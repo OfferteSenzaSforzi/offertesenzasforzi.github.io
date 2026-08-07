@@ -1,9 +1,16 @@
 {
-    "name": "OSS - Offerte Senza Sforzi",
+    "name": "OSS - OfferteSenzaSforzi",
     "short_name": "OSS",
     "description": "Sito ufficiale di assistenza per l'app OSS.",
     "start_url": "/",
     "display": "standalone",
+    "icons": [
+        {
+            "src": "/germano.png",
+            "sizes": "400x400",
+            "type": "image/png"
+        }
+    ],
     "background_color": "#fbfbfd",
     "theme_color": "#fbfbfd",
     "orientation": "portrait-primary",

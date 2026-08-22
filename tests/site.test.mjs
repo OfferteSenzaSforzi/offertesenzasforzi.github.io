@@ -7,6 +7,7 @@ const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const privacy = await readFile(new URL('../privacy-policy.html', import.meta.url), 'utf8');
 const manifest = await readFile(new URL('../public/site.webmanifest', import.meta.url), 'utf8');
 const mainCss = await readFile(new URL('../styles/main.css', import.meta.url), 'utf8');
+const privacyCss = await readFile(new URL('../styles/privacy-policy.css', import.meta.url), 'utf8');
 const mainTs = await readFile(new URL('../src/main.ts', import.meta.url), 'utf8');
 const sitemap = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8');
 const routes = ['home', 'offerte', 'tracking', 'wishlist-ai', 'smart-care', 'prezzi', 'forum'];
@@ -27,26 +28,34 @@ test('all routes and required content are publishable', () => {
 
   assert.ok(!html.includes('APP_STORE_URL'));
   assert.ok(!html.includes('PLAY_STORE_URL'));
-  assert.ok(html.includes('/assets/screens/offers-home.png'));
+  assert.ok(html.includes('/assets/screens/offers-home-480.webp'));
+  assert.match(html, /<img class="app-preview"[^>]*fetchpriority="high"/);
   assert.ok(html.includes('class="signal-cloud"'));
   assert.ok(!html.includes('orbit-label'));
   assert.ok(html.includes('/assets/store/app-store.svg'));
-  assert.ok(html.includes('/assets/store/google-play.png'));
+  assert.ok(html.includes('/assets/store/google-play-320.webp'));
   assert.ok(html.includes('data-store-coming-soon="App Store"'));
   assert.ok(html.includes('data-store-coming-soon="Google Play"'));
   assert.ok(html.includes('class="coming-soon-dialog"'));
   assert.ok(html.includes('/assets/brand/germano-mascot.png'));
-  assert.match(html, /class="deal-product"><img src="\/assets\/brand\/germano-icon\.png"/);
+  assert.match(html, /class="deal-product"><img src="\/assets\/brand\/germano-icon-320\.webp"/);
   assert.ok(html.includes('aria-label="Apri menu"'));
   assert.ok(!html.includes('<span>Menu</span>'));
-  assert.ok(html.includes('/assets/screens/wishlist-ai.png'));
-  assert.ok(html.includes('/assets/screens/smart-care.png'));
+  assert.ok(html.includes('/assets/screens/wishlist-ai-480.webp'));
+  assert.ok(html.includes('/assets/screens/smart-care-480.webp'));
   assert.ok(html.includes('"@type": "WebSite"'));
   assert.ok(html.includes('"alternateName": ["Offerte Senza Sforzi", "OSS"]'));
   assert.match(html, /<meta name="description" content="[^"]*offerte senza sforzi/);
   for (const unsupportedClaim of ['Selezionate ogni giorno', 'Più scelto', 'Gratis, sempre', 'Disponibile nell\'app', '-31%']) {
     assert.ok(!html.includes(unsupportedClaim), `Unsupported claim: ${unsupportedClaim}`);
   }
+});
+
+test('removed skip links leave no associated markup, styles, or behavior', () => {
+  for (const source of [html, privacy, mainCss, privacyCss, mainTs]) {
+    assert.ok(!source.includes('skip-link'));
+  }
+  assert.ok(!`${html}${privacy}${mainTs}`.includes('main-content'));
 });
 
 test('SEO build creates one canonical, crawlable page per feature', () => {
@@ -98,16 +107,24 @@ test('popup is centered and public images are organized', async () => {
   assert.match(mainCss, /\.coming-soon-dialog\s*\{[^}]*position: fixed;[^}]*inset: 50% auto auto 50%;[^}]*transform: translate\(-50%, -50%\);/s);
 
   const images = (await readdir(new URL('../public/', import.meta.url), { recursive: true }))
-    .filter((path) => /\.(?:png|svg)$/i.test(path))
+    .filter((path) => /\.(?:png|svg|webp)$/i.test(path))
     .sort();
   const expected = [
+    'assets/brand/germano-icon-192.webp',
+    'assets/brand/germano-icon-320.webp',
     'assets/brand/germano-icon.png',
+    'assets/brand/germano-mascot-384.webp',
+    'assets/brand/germano-mascot-768.webp',
+    'assets/brand/germano-mascot-960.webp',
     'assets/brand/germano-mascot.png',
-    'assets/screens/offers-home.png',
-    'assets/screens/smart-care.png',
-    'assets/screens/wishlist-ai.png',
+    'assets/screens/offers-home-480.webp',
+    'assets/screens/offers-home-960.webp',
+    'assets/screens/smart-care-480.webp',
+    'assets/screens/smart-care-960.webp',
+    'assets/screens/wishlist-ai-480.webp',
+    'assets/screens/wishlist-ai-960.webp',
     'assets/store/app-store.svg',
-    'assets/store/google-play.png',
+    'assets/store/google-play-320.webp',
   ];
 
   assert.deepEqual(images, expected);

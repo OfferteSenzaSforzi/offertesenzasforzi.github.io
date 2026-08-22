@@ -73,23 +73,6 @@ svg {
     outline-offset: 4px;
 }
 
-.skip-link {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 200;
-    padding: 10px 14px;
-    border-radius: 12px;
-    color: var(--cream);
-    background: var(--forest-deep);
-    transform: translateY(-160%);
-    transition: transform 0.2s ease;
-}
-
-.skip-link:focus {
-    transform: translateY(0);
-}
-
 .site-shell {
     height: 100dvh;
     display: grid;

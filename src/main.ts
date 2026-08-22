@@ -41,7 +41,7 @@ function initSite(): void {
   initOfferDemo();
   if (redirectLegacyHash()) return;
   renderRoute();
-  window.addEventListener('hashchange', handleHashChange);
+  window.addEventListener('hashchange', redirectLegacyHash);
 }
 
 function setCurrentYear(): void {
@@ -64,14 +64,6 @@ function redirectLegacyHash(): boolean {
   if (!ROUTES.includes(hashRoute)) return false;
   window.location.replace(ROUTE_PATHS[hashRoute]);
   return true;
-}
-
-function handleHashChange(): void {
-  if (window.location.hash === '#main-content') {
-    document.querySelector<HTMLElement>('#main-content')?.focus({ preventScroll: true });
-    return;
-  }
-  redirectLegacyHash();
 }
 
 function renderRoute(): void {

@@ -43,7 +43,7 @@ test('all routes and required content are publishable', () => {
   assert.ok(html.includes('/assets/screens/smart-care.png'));
   assert.ok(html.includes('"@type": "WebSite"'));
   assert.ok(html.includes('"alternateName": ["Offerte Senza Sforzi", "OSS"]'));
-  assert.match(html, /<p class="lead">[^<]*offerte senza sforzi/);
+  assert.match(html, /<meta name="description" content="[^"]*offerte senza sforzi/);
   for (const unsupportedClaim of ['Selezionate ogni giorno', 'Più scelto', 'Gratis, sempre', 'Disponibile nell\'app', '-31%']) {
     assert.ok(!html.includes(unsupportedClaim), `Unsupported claim: ${unsupportedClaim}`);
   }

@@ -6,7 +6,7 @@
     "display": "standalone",
     "icons": [
         {
-            "src": "/germano.png",
+            "src": "/assets/brand/germano-icon.png",
             "sizes": "400x400",
             "type": "image/png"
         }

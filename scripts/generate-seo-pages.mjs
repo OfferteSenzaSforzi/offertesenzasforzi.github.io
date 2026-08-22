@@ -15,7 +15,7 @@ export const SEO_PAGES = [
     path: '/offerte/',
     title: 'Offerte Amazon selezionate | OfferteSenzaSforzi',
     description:
-      'Scopri offerte Amazon selezionate ogni giorno, salvale nei preferiti oppure scartale senza perdere la possibilità di recuperarle.',
+      'Scopri offerte Amazon selezionate, salvale nei preferiti oppure scartale senza perdere la possibilità di recuperarle.',
   },
   {
     route: 'tracking',

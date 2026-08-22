@@ -44,6 +44,9 @@ test('all routes and required content are publishable', () => {
   assert.ok(html.includes('"@type": "WebSite"'));
   assert.ok(html.includes('"alternateName": ["Offerte Senza Sforzi", "OSS"]'));
   assert.match(html, /<p class="lead">[^<]*offerte senza sforzi/);
+  for (const unsupportedClaim of ['Selezionate ogni giorno', 'Più scelto', 'Gratis, sempre', 'Disponibile nell\'app', '-31%']) {
+    assert.ok(!html.includes(unsupportedClaim), `Unsupported claim: ${unsupportedClaim}`);
+  }
 });
 
 test('SEO build creates one canonical, crawlable page per feature', () => {
@@ -85,6 +88,7 @@ test('privacy page keeps its legal sections and dedicated motion entrypoint', ()
 
   assert.ok(privacy.includes('/src/privacyPolicy.ts'));
   assert.ok(!privacy.includes('/src/main.ts'));
+  assert.ok(!privacy.includes('anonymous UUID'));
   for (const value of ['19.99 EUR/year', '49.99 EUR/year', '10 products', '30 Wishlist AI', '5 Smart Care AI']) {
     assert.ok(privacy.includes(value), `Missing current privacy plan value: ${value}`);
   }

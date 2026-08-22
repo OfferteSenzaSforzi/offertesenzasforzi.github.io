@@ -5,9 +5,6 @@ on:
   push:
     branches: ["main"]
 
-  pull_request:
-    branches: ["main"]
-  
   # Allows manual workflow dispatch
   workflow_dispatch:
 
@@ -41,6 +38,9 @@ jobs:
       
       - name: Install dependencies
         run: npm ci
+
+      - name: Test
+        run: npm test
       
       - name: Build with Vite
         run: npm run build

@@ -34,7 +34,7 @@ test('all routes and required content are publishable', () => {
   assert.ok(!html.includes('orbit-label'));
   assert.ok(html.includes('/assets/store/app-store.svg'));
   assert.ok(html.includes('/assets/store/google-play-320.webp'));
-  assert.ok(html.includes('data-store-coming-soon="App Store"'));
+  assert.ok(html.includes('href="https://apps.apple.com/it/app/oss/id6777820212"'));
   assert.ok(html.includes('data-store-coming-soon="Google Play"'));
   assert.ok(html.includes('class="coming-soon-dialog"'));
   assert.ok(html.includes('/assets/brand/germano-mascot.png'));

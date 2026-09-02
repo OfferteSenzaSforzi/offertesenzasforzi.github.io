@@ -6,7 +6,7 @@ export const SEO_PAGES = [
   {
     route: 'home',
     path: '/',
-    title: 'OfferteSenzaSforzi (OSS) | Offerte, tracking prezzi e AI',
+    title: 'Offerte senza sforzi | OfferteSenzaSforzi (OSS)',
     description:
       'OfferteSenzaSforzi (OSS): offerte senza sforzi, tracking prezzi, Wishlist AI e Smart Care per ricevere solo gli avvisi che servono.',
   },

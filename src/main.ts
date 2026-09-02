@@ -17,7 +17,7 @@ const ROUTE_PATHS: Record<Route, string> = {
 };
 
 const PAGE_TITLES: Record<Route, string> = {
-  home: 'OfferteSenzaSforzi (OSS) | Offerte, tracking prezzi e AI',
+  home: 'Offerte senza sforzi | OfferteSenzaSforzi (OSS)',
   offerte: 'Offerte Amazon selezionate | OfferteSenzaSforzi',
   tracking: 'Tracking prezzi Amazon | OfferteSenzaSforzi',
   'wishlist-ai': 'Wishlist AI per trovare prodotti | OfferteSenzaSforzi',

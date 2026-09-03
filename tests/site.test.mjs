@@ -90,7 +90,7 @@ test('SEO build creates one canonical, crawlable page per feature', () => {
       `Missing sitemap URL: ${page.path}`,
     );
   }
-  assert.ok(!sitemap.includes('/forum/'));
+  assert.ok(sitemap.includes('<loc>https://offertesenzasforzi.com/forum/</loc>'));
 });
 
 test('privacy page keeps its legal sections and dedicated motion entrypoint', () => {

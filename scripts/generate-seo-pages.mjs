@@ -51,7 +51,6 @@ export const SEO_PAGES = [
     title: 'Forum in arrivo | OfferteSenzaSforzi',
     description:
       'Il forum di OfferteSenzaSforzi è in arrivo: uno spazio per confrontare esperienze e acquistare con più consapevolezza.',
-    index: false,
   },
 ];
 

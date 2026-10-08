@@ -1,7 +1,7 @@
 {
     "name": "OSS - OfferteSenzaSforzi",
     "short_name": "OSS",
-    "description": "Sito ufficiale di assistenza per l'app OSS.",
+    "description": "OfferteSenzaSforzi: offerte, tracking prezzi, Wishlist AI e Smart Care con Germano il Rano.",
     "start_url": "/",
     "display": "standalone",
     "icons": [

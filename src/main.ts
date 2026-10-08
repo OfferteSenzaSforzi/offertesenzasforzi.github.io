@@ -17,11 +17,11 @@ const ROUTE_PATHS: Record<Route, string> = {
 };
 
 const PAGE_TITLES: Record<Route, string> = {
-  home: 'Offerte senza sforzi | OfferteSenzaSforzi (OSS)',
-  offerte: 'Offerte Amazon selezionate | OfferteSenzaSforzi',
-  tracking: 'Tracking prezzi Amazon | OfferteSenzaSforzi',
+  home: 'Offerte senza sforzi con Germano | OfferteSenzaSforzi',
+  offerte: 'Offerte Amazon scelte da Germano | OfferteSenzaSforzi',
+  tracking: 'Tracking prezzi Amazon con Germano | OfferteSenzaSforzi',
   'wishlist-ai': 'Wishlist AI per trovare prodotti | OfferteSenzaSforzi',
-  'smart-care': 'Smart Care e promemoria | OfferteSenzaSforzi',
+  'smart-care': 'Smart Care: promemoria intelligenti | OfferteSenzaSforzi',
   prezzi: 'Piani e prezzi | OfferteSenzaSforzi',
   forum: 'Forum in arrivo | OfferteSenzaSforzi',
 };
@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', initSite);
 function initSite(): void {
   setCurrentYear();
   initNavigation();
-  initStoreDialog();
   initOfferDemo();
   if (redirectLegacyHash()) return;
   renderRoute();
@@ -161,26 +160,6 @@ function initNavigation(): void {
 
   window.matchMedia('(min-width: 1061px)').addEventListener('change', (event) => {
     if (event.matches) closeMenu(false);
-  });
-}
-
-function initStoreDialog(): void {
-  const dialog = document.querySelector<HTMLDialogElement>('.coming-soon-dialog');
-  const storeName = dialog?.querySelector<HTMLElement>('[data-coming-soon-store]');
-  if (!dialog || !storeName) return;
-
-  document.querySelectorAll<HTMLButtonElement>('[data-store-coming-soon]').forEach((button) => {
-    button.addEventListener('click', () => {
-      storeName.textContent = button.dataset.storeComingSoon ?? 'App Store e Google Play';
-      dialog.showModal();
-    });
-  });
-
-  dialog.querySelectorAll<HTMLButtonElement>('[data-dialog-close]').forEach((button) => {
-    button.addEventListener('click', () => dialog.close());
-  });
-  dialog.addEventListener('click', (event) => {
-    if (event.target === dialog) dialog.close();
   });
 }
 

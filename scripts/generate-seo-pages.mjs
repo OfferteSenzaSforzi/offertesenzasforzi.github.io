@@ -6,44 +6,44 @@ export const SEO_PAGES = [
   {
     route: 'home',
     path: '/',
-    title: 'Offerte senza sforzi | OfferteSenzaSforzi (OSS)',
+    title: 'Offerte senza sforzi con Germano | OfferteSenzaSforzi',
     description:
-      'OfferteSenzaSforzi (OSS): offerte senza sforzi, tracking prezzi, Wishlist AI e Smart Care per ricevere solo gli avvisi che servono.',
+      "Scopri OfferteSenzaSforzi (OSS), l'app per trovare offerte senza sforzi, monitorare i prezzi con tracking, Wishlist AI e Smart Care insieme a Germano il Rano.",
   },
   {
     route: 'offerte',
     path: '/offerte/',
-    title: 'Offerte Amazon selezionate | OfferteSenzaSforzi',
+    title: 'Offerte Amazon scelte da Germano | OfferteSenzaSforzi',
     description:
-      'Scopri offerte Amazon selezionate, salvale nei preferiti oppure scartale senza perdere la possibilità di recuperarle.',
+      "Scopri le offerte Amazon selezionate da Germano per OfferteSenzaSforzi: salvale nei preferiti o scartale, con la possibilità di recuperarle nell'app.",
   },
   {
     route: 'tracking',
     path: '/tracking/',
-    title: 'Tracking prezzi Amazon | OfferteSenzaSforzi',
+    title: 'Tracking prezzi Amazon con Germano | OfferteSenzaSforzi',
     description:
-      'Imposta il prezzo desiderato e lascia che il tracking prezzi di OfferteSenzaSforzi ti avvisi quando il prodotto entra nel tuo intervallo.',
+      'Imposta il prezzo desiderato: il tracking prezzi Amazon di OfferteSenzaSforzi controlla il prodotto e Germano ti avvisa quando entra nel tuo intervallo.',
   },
   {
     route: 'wishlist-ai',
     path: '/wishlist-ai/',
     title: 'Wishlist AI per trovare prodotti | OfferteSenzaSforzi',
     description:
-      'Descrivi ciò che cerchi, il budget e le caratteristiche importanti: Wishlist AI trova prodotti compatibili da confrontare e salvare.',
+      'Descrivi prodotto, budget e caratteristiche: la Wishlist AI di OfferteSenzaSforzi trova opzioni compatibili da confrontare, salvare o aggiungere al tracking.',
   },
   {
     route: 'smart-care',
     path: '/smart-care/',
-    title: 'Smart Care e promemoria | OfferteSenzaSforzi',
+    title: 'Smart Care: promemoria intelligenti | OfferteSenzaSforzi',
     description:
-      'Smart Care stima manutenzione e sostituzione dei tuoi oggetti e ti ricorda quando è il momento di intervenire.',
+      "Smart Care di OfferteSenzaSforzi stima manutenzione e sostituzione dei tuoi oggetti; Germano ti ricorda quando è il momento di intervenire nell'app.",
   },
   {
     route: 'prezzi',
     path: '/prezzi/',
     title: 'Piani e prezzi | OfferteSenzaSforzi',
     description:
-      'Confronta i piani Free, Smart e Pro di OfferteSenzaSforzi per tracking prezzi, Wishlist AI e Smart Care.',
+      "Confronta i piani Free, Smart e Pro di OfferteSenzaSforzi per offerte, tracking prezzi, Wishlist AI e promemoria Smart Care nell'app OSS.",
   },
   {
     route: 'forum',
@@ -51,6 +51,7 @@ export const SEO_PAGES = [
     title: 'Forum in arrivo | OfferteSenzaSforzi',
     description:
       'Il forum di OfferteSenzaSforzi è in arrivo: uno spazio per confrontare esperienze e acquistare con più consapevolezza.',
+    index: false,
   },
 ];
 
@@ -82,6 +83,11 @@ export function renderSeoPage(template, page) {
     .replace(
       /<meta property="og:description" content="[^"]*">/,
       `<meta property="og:description" content="${page.description}">`,
+    )
+    .replace(/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${page.title}">`)
+    .replace(
+      /<meta name="twitter:description" content="[^"]*">/,
+      `<meta name="twitter:description" content="${page.description}">`,
     )
     .replace(/<body([^>]*)>/, `<body data-route="${page.route}"$1>`)
     .replace(/(<main\b[^>]*>)[\s\S]*?(<\/main>)/, `$1\n${visibleSection}\n$2`);

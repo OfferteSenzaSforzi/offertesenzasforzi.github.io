@@ -35,8 +35,10 @@ test('all routes and required content are publishable', () => {
   assert.ok(html.includes('/assets/store/app-store.svg'));
   assert.ok(html.includes('/assets/store/google-play-320.webp'));
   assert.ok(html.includes('href="https://apps.apple.com/it/app/oss/id6777820212"'));
-  assert.ok(html.includes('data-store-coming-soon="Google Play"'));
-  assert.ok(html.includes('class="coming-soon-dialog"'));
+  assert.ok(html.includes('href="https://play.google.com/store/apps/details?id=com.offertesenzasforzi.oss"'));
+  assert.ok(html.includes('>App Android</a>'));
+  assert.ok(!`${html}${mainCss}${mainTs}`.includes('coming-soon'));
+  assert.ok(!mainTs.includes('initStoreDialog'));
   assert.ok(html.includes('/assets/brand/germano-mascot.png'));
   assert.match(html, /class="deal-product"><img src="\/assets\/brand\/germano-icon-320\.webp"/);
   assert.ok(html.includes('aria-label="Apri menu"'));
@@ -45,10 +47,17 @@ test('all routes and required content are publishable', () => {
   assert.ok(html.includes('/assets/screens/smart-care-480.webp'));
   assert.ok(html.includes('"@type": "WebSite"'));
   assert.ok(html.includes('"alternateName": ["Offerte Senza Sforzi", "OSS"]'));
-  assert.match(html, /<title>Offerte senza sforzi \| OfferteSenzaSforzi \(OSS\)<\/title>/);
-  assert.match(html, /<meta property="og:title" content="Offerte senza sforzi \| OfferteSenzaSforzi \(OSS\)">/);
+  assert.match(html, /<title>Offerte senza sforzi con Germano \| OfferteSenzaSforzi<\/title>/);
+  assert.match(html, /<meta property="og:title" content="Offerte senza sforzi con Germano \| OfferteSenzaSforzi">/);
   assert.match(html, /<h1 id="home-title">Offerte senza sforzi\./);
   assert.match(html, /<meta name="description" content="[^"]*offerte senza sforzi/);
+  assert.ok(html.includes('"name": "Germano il Rano"'));
+  assert.ok(html.includes('"alternateName": ["Germano Offerte", "Germano"]'));
+  assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
+  assert.ok(html.includes('<meta property="og:image:width" content="1254">'));
+  const structuredData = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+  assert.ok(structuredData);
+  assert.doesNotThrow(() => JSON.parse(structuredData));
   for (const unsupportedClaim of ['Selezionate ogni giorno', 'Più scelto', 'Gratis, sempre', 'Disponibile nell\'app', '-31%']) {
     assert.ok(!html.includes(unsupportedClaim), `Unsupported claim: ${unsupportedClaim}`);
   }
@@ -62,7 +71,12 @@ test('removed skip links leave no associated markup, styles, or behavior', () =>
 });
 
 test('SEO build creates one canonical, crawlable page per feature', () => {
+  assert.equal(new Set(SEO_PAGES.map((page) => page.title)).size, SEO_PAGES.length);
+  assert.equal(new Set(SEO_PAGES.map((page) => page.description)).size, SEO_PAGES.length);
+
   for (const page of SEO_PAGES) {
+    assert.ok(page.title.length <= 60, `Title too long: ${page.route}`);
+    assert.ok(page.description.length <= 160, `Description too long: ${page.route}`);
     const rendered = renderSeoPage(html, page);
     const renderedRoutes = [...rendered.matchAll(/data-page="([^"]+)"/g)].map(
       (match) => match[1],
@@ -75,6 +89,9 @@ test('SEO build creates one canonical, crawlable page per feature', () => {
         `<link rel="canonical" href="https://offertesenzasforzi.com${page.path}">`,
       ),
     );
+    assert.ok(rendered.includes(`<meta property="og:title" content="${page.title}">`));
+    assert.ok(rendered.includes(`<meta name="twitter:title" content="${page.title}">`));
+    assert.ok(rendered.includes(`<meta name="twitter:description" content="${page.description}">`));
     assert.ok(rendered.includes(`<body data-route="${page.route}">`));
     assert.ok(!rendered.match(new RegExp(`data-page="${page.route}"[^>]* hidden`)));
     assert.ok(
@@ -90,7 +107,7 @@ test('SEO build creates one canonical, crawlable page per feature', () => {
       `Missing sitemap URL: ${page.path}`,
     );
   }
-  assert.ok(sitemap.includes('<loc>https://offertesenzasforzi.com/forum/</loc>'));
+  assert.ok(!sitemap.includes('<loc>https://offertesenzasforzi.com/forum/</loc>'));
 });
 
 test('privacy page keeps its legal sections and dedicated motion entrypoint', () => {
@@ -106,9 +123,7 @@ test('privacy page keeps its legal sections and dedicated motion entrypoint', ()
   }
 });
 
-test('popup is centered and public images are organized', async () => {
-  assert.match(mainCss, /\.coming-soon-dialog\s*\{[^}]*position: fixed;[^}]*inset: 50% auto auto 50%;[^}]*transform: translate\(-50%, -50%\);/s);
-
+test('public images are organized', async () => {
   const images = (await readdir(new URL('../public/', import.meta.url), { recursive: true }))
     .filter((path) => /\.(?:png|svg|webp)$/i.test(path))
     .sort();

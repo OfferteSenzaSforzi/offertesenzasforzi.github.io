@@ -50,6 +50,7 @@ test('all routes and required content are publishable', () => {
   assert.match(html, /<title>Offerte senza sforzi con Germano \| OfferteSenzaSforzi<\/title>/);
   assert.match(html, /<meta property="og:title" content="Offerte senza sforzi con Germano \| OfferteSenzaSforzi">/);
   assert.match(html, /<h1 id="home-title">Offerte senza sforzi\./);
+  assert.ok(html.includes('A un crack dal risparmio!'));
   assert.match(html, /<meta name="description" content="[^"]*offerte senza sforzi/);
   assert.ok(html.includes('"name": "Germano il Rano"'));
   assert.ok(html.includes('"alternateName": ["Germano Offerte", "Germano"]'));
